@@ -34,3 +34,4 @@ Thumbs.db
 # Custom gitignore #
 # ================ #
 *Thumbs.db*
+*.xcf
