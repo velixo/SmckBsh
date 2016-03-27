@@ -12,7 +12,7 @@ GameObject:
   - 61: {fileID: 6115270}
   - 50: {fileID: 5061392}
   - 114: {fileID: 11409964}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,12 +41,12 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_AngularDrag: 0
+  m_GravityScale: 4
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!61 &6115270
 BoxCollider2D:
@@ -56,7 +56,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 157684}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: a951085014ac5fe40b1e0e2a5f985f69, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
@@ -73,7 +73,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5fe1def210b8348bda6bc312bd562b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMaxVel: 8
+  xMaxVel: 10
+  jumpVel: 17
 --- !u!212 &21247426
 SpriteRenderer:
   m_ObjectHideFlags: 1
