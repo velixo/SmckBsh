@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5fe1def210b8348bda6bc312bd562b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMaxVel: 10
+  xMaxVel: 12
   jumpVel: 17
 --- !u!212 &21247426
 SpriteRenderer:
