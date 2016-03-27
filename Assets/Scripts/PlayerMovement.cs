@@ -4,6 +4,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
     public float xMaxVel;
     public float jumpVel;
+    public float xAirDrag;
     private Rigidbody2D rBody;
     private float xDir = 0;
     private float yDir = 0;
@@ -20,10 +21,12 @@ public class PlayerMovement : MonoBehaviour {
 	private void FixedUpdate () {
         GetUserInput();
         Vector2 vel = rBody.velocity;
+        vel.x *= xAirDrag;
         if (xDir != 0) {
             vel.x = xMaxVel * xDir;
         }
-        if (yDir > 0 && TouchingSurface()) {
+        bool touchingSurface = TouchingSurface();
+        if (yDir > 0 && touchingSurface) {
             vel.y = jumpVel;
         }
 	    rBody.velocity = vel;

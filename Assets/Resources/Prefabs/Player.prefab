@@ -75,6 +75,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xMaxVel: 12
   jumpVel: 17
+  xAirDrag: 0.97
 --- !u!212 &21247426
 SpriteRenderer:
   m_ObjectHideFlags: 1
