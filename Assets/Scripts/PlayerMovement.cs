@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour {
     public float xMaxVel;
     public float jumpVel;
     public float xAirDrag;
+    public float xGroundDrag;
     public float wallJumpVel;
     private Rigidbody2D rBody;
     private BoxCollider2D bColl;
@@ -25,11 +26,16 @@ public class PlayerMovement : MonoBehaviour {
 	private void FixedUpdate () {
         GetUserInput();
         Vector2 vel = rBody.velocity;
-        vel.x *= xAirDrag;
+        bool touchingSurface = TouchingSurface();
+        if (touchingSurface) {
+            vel.x *= xGroundDrag;
+        } else {
+            vel.x *= xAirDrag;
+        }
+
         if (xDir != 0) {
             vel.x = xMaxVel * xDir;
         }
-        bool touchingSurface = TouchingSurface();
         if (yDir > 0 && touchingSurface) {
             vel.y = jumpVel;
             Vector2 touchedSide = GetTouchedSide();

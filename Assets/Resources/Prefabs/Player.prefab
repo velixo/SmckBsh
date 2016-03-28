@@ -76,7 +76,8 @@ MonoBehaviour:
   debug: 0
   xMaxVel: 12
   jumpVel: 19
-  xAirDrag: 0.96
+  xAirDrag: 0.95
+  xGroundDrag: 0.84
   wallJumpVel: 25
 --- !u!212 &21247426
 SpriteRenderer:
