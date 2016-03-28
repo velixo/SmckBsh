@@ -42,7 +42,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 4
+  m_GravityScale: 3.5
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -73,9 +73,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5fe1def210b8348bda6bc312bd562b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  debug: 0
   xMaxVel: 12
   jumpVel: 19
-  xAirDrag: 0.97
+  xAirDrag: 0.96
+  wallJumpVel: 25
 --- !u!212 &21247426
 SpriteRenderer:
   m_ObjectHideFlags: 1
