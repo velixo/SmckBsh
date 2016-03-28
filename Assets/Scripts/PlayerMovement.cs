@@ -25,6 +25,10 @@ public class PlayerMovement : MonoBehaviour {
 	// Update is called once per frame
 	private void FixedUpdate () {
         GetUserInput();
+        Move();
+	}
+
+    private void Move() {
         Vector2 vel = rBody.velocity;
         bool touchingSurface = TouchingSurface();
         if (touchingSurface) {
@@ -41,12 +45,13 @@ public class PlayerMovement : MonoBehaviour {
             Vector2 touchedSide = GetTouchedSide();
             if (touchedSide == Vector2.left) {
                 vel.x = wallJumpVel;
-            } else if (touchedSide == Vector2.right) {
+            }
+            else if (touchedSide == Vector2.right) {
                 vel.x = -wallJumpVel;
             }
         }
-	    rBody.velocity = vel;
-	}
+        rBody.velocity = vel;
+    }
 
     private void GetUserInput() {
         xDir = Input.GetAxisRaw("Horizontal");
