@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	private void FixedUpdate () {
-        GetUserInput();
+        GetMovementInput();
         Move();
 	}
 
@@ -53,9 +53,14 @@ public class PlayerMovement : MonoBehaviour {
         rBody.velocity = vel;
     }
 
-    private void GetUserInput() {
-        xDir = Input.GetAxisRaw("Horizontal");
-        yDir = Input.GetAxisRaw("Vertical");
+    private void GetMovementInput() {
+        xDir = 0;
+        if (Input.GetKey(KeyCode.D)) xDir++;
+        if (Input.GetKey(KeyCode.A)) xDir--;
+
+        yDir = 0;
+        if (Input.GetKey(KeyCode.W)) yDir++;
+        if (Input.GetKey(KeyCode.S)) yDir--;
     }
 
     private bool TouchingSurface() {
