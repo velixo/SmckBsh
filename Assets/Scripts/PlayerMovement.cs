@@ -70,24 +70,19 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private Vector2 GetTouchedSide() {
-        float offset = 0.0f;
         Vector2 center = bColl.bounds.center;
-        Vector2 top = new Vector2(center.x, bColl.bounds.max.y - offset);
-        Vector2 bottom = new Vector2(center.x, bColl.bounds.min.y + offset);
-        //Vector2 left = new Vector2(bColl.bounds.min.x + offset, center.y);
-        //Vector2 right = new Vector2(bColl.bounds.max.x - offset, center.y);
+        Vector2 top = new Vector2(center.x, bColl.bounds.max.y);
+        Vector2 bottom = new Vector2(center.x, bColl.bounds.min.y);
 
         RaycastHit2D tHitLeft = Physics2D.Raycast(top, Vector2.left, collRadius, excludePlayerMask);
         RaycastHit2D bHitLeft = Physics2D.Raycast(bottom, Vector2.left, collRadius, excludePlayerMask);
         if (tHitLeft.collider != null || bHitLeft.collider != null) {
-            print("left side touched");
             return Vector2.left;
         }
 
         RaycastHit2D tHitRight = Physics2D.Raycast(top, Vector2.right, collRadius, excludePlayerMask);
         RaycastHit2D bHitRight = Physics2D.Raycast(bottom, Vector2.right, collRadius, excludePlayerMask);
         if (tHitRight.collider != null || bHitRight.collider != null) {
-            print("right side touched");
             return Vector2.right;
         }
 
@@ -96,10 +91,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public void OnDrawGizmos() {
         if (Application.isPlaying && debug) {
-            float offset = 0.0f;
             Vector2 center = bColl.bounds.center;
-            Vector2 top = new Vector2(center.x, bColl.bounds.max.y - offset);
-            Vector2 bottom = new Vector2(center.x, bColl.bounds.min.y + offset);
+            Vector2 top = new Vector2(center.x, bColl.bounds.max.y);
+            Vector2 bottom = new Vector2(center.x, bColl.bounds.min.y);
 
             // draw left side touch detection rays
             Debug.DrawRay(top, Vector2.left * collRadius, Color.cyan);
