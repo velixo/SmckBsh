@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEditor;
 using System.Collections;
 
 public class PlayerAttacking : MonoBehaviour {
@@ -10,7 +11,8 @@ public class PlayerAttacking : MonoBehaviour {
     private float hitSpriteOffset;
 
     private void Awake () {
-        hitSpriteOffset = 1f;
+        GameObject hitSprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Prefabs/HitSprite.prefab");
+        hitSpriteOffset = (transform.localScale.x * 10 + hitSprite.transform.localScale.x) / 2;
     }
 
 	private void Update () {
