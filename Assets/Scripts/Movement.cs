@@ -13,7 +13,7 @@ public class Movement : MonoBehaviour {
     private BoxCollider2D bColl;
     private float xDir = 0;
     private float yDir = 0;
-    private float collRadius = 0.52f;
+    private float collRadius;
     private int excludePlayerMask;
 
 	// Use this for initialization
@@ -22,8 +22,9 @@ public class Movement : MonoBehaviour {
         bColl = GetComponent<BoxCollider2D>();
         excludePlayerMask =  ~ (1 << LayerMask.NameToLayer("Player"));
         movementInput = GetComponent<IMovementInput>();
+        collRadius = (transform.localScale.x * 10) / 2 + 0.02f;
 	}
-	
+
 	// Update is called once per frame
 	private void FixedUpdate () {
         GetMovementInput();
@@ -60,13 +61,13 @@ public class Movement : MonoBehaviour {
         yDir = movementInput.yDir;
     }
 
-    private bool TouchingSurface() {
+    public bool TouchingSurface() {
         //TODO change this to a box check
         Collider2D coll = Physics2D.OverlapCircle(transform.position, collRadius, excludePlayerMask);
         return coll != null;
     }
 
-    private Vector2 GetTouchedSide() {
+    public Vector2 GetTouchedSide() {
         Vector2 center = bColl.bounds.center;
         Vector2 top = new Vector2(center.x, bColl.bounds.max.y);
         Vector2 bottom = new Vector2(center.x, bColl.bounds.min.y);
