@@ -13,6 +13,7 @@ GameObject:
   - 50: {fileID: 5061392}
   - 114: {fileID: 11409964}
   - 114: {fileID: 11487354}
+  - 114: {fileID: 11450452}
   m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
@@ -80,6 +81,17 @@ MonoBehaviour:
   xAirDrag: 0.95
   xGroundDrag: 0.84
   wallJumpVel: 25
+--- !u!114 &11450452
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce26746cbb9c9df40890f8ca14f4e053, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11487354
 MonoBehaviour:
   m_ObjectHideFlags: 1

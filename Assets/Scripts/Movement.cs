@@ -1,13 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerMovement : MonoBehaviour {
+public class Movement : MonoBehaviour {
     public bool debug;
     public float xMaxVel;
     public float jumpVel;
     public float xAirDrag;
     public float xGroundDrag;
     public float wallJumpVel;
+    private IMovementInput movementInput;
     private Rigidbody2D rBody;
     private BoxCollider2D bColl;
     private float xDir = 0;
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour {
         rBody = GetComponent<Rigidbody2D>();
         bColl = GetComponent<BoxCollider2D>();
         excludePlayerMask =  ~ (1 << LayerMask.NameToLayer("Player"));
+        movementInput = GetComponent<IMovementInput>();
 	}
 	
 	// Update is called once per frame
@@ -54,13 +56,8 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void GetMovementInput() {
-        xDir = 0;
-        if (Input.GetKey(KeyCode.D)) xDir++;
-        if (Input.GetKey(KeyCode.A)) xDir--;
-
-        yDir = 0;
-        if (Input.GetKey(KeyCode.W)) yDir++;
-        if (Input.GetKey(KeyCode.S)) yDir--;
+        xDir = movementInput.xDir;
+        yDir = movementInput.yDir;
     }
 
     private bool TouchingSurface() {
