@@ -9,14 +9,17 @@ public class PlayerAttacking : MonoBehaviour {
     private Vector2 hitDir = Vector2.zero;
     private GameObject hitSprite = null;
     private float hitSpriteOffset;
+    private int playerLayer;
 
     private void Awake () {
         GameObject hitSprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Prefabs/HitSprite.prefab");
         hitSpriteOffset = (transform.localScale.x * 10 + hitSprite.transform.localScale.x) / 2;
+        playerLayer = LayerMask.NameToLayer("Player");
     }
 
 	private void Update () {
         float timeSinceHit = Time.timeSinceLevelLoad - lastArrHit;
+        CalcHitSpriteAlpha();
         if (timeSinceHit > minTimeBetweenHits) {
             if (Input.GetKey(KeyCode.UpArrow)) {
                 lastArrHit = Time.timeSinceLevelLoad;
@@ -32,16 +35,25 @@ public class PlayerAttacking : MonoBehaviour {
                 hitDir = Vector2.left;
             }
 
-            if (hitDir != Vector2.zero) {
-                print("start hit sprite");
+            if (hitDir != Vector2.zero && hitSprite == null) {
                 hitSprite = Instantiate(Resources.Load("Prefabs/HitSprite")) as GameObject;
                 hitSprite.transform.position = transform.position;
                 hitSprite.transform.Translate(hitDir * hitSpriteOffset);
+                Vector2 pos = hitSprite.transform.position;
+                Vector2 scale = hitSprite.transform.localScale;
+                Vector2 min = new Vector2(pos.x - scale.x / 2, pos.y - scale.y / 2);
+                Vector2 max = new Vector2(pos.x + scale.x / 2, pos.y + scale.y / 2);
+                Collider2D[] colls = Physics2D.OverlapAreaAll(min, max);
+                for (int i = 0; i < colls.Length; i++) {
+                    Collider2D coll = colls[i];
+                    if (coll.gameObject != gameObject && coll.gameObject.layer == playerLayer) {
+                        print("KILL " + coll.gameObject.name);
+                        Destroy(coll.gameObject);
+                    }
+                }
                 hitDir = Vector2.zero;
             }
         }
-
-        CalcHitSpriteAlpha();
 	}
 
     private void CalcHitSpriteAlpha() {
