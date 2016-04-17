@@ -8,7 +8,7 @@ public class Movement : MonoBehaviour {
     public float xAirDrag;
     public float xGroundDrag;
     public float wallJumpVel;
-    private IMovementInput movementInput;
+    private IControlInput movementInput;
     private Rigidbody2D rBody;
     private BoxCollider2D bColl;
     private float xDir = 0;
@@ -21,7 +21,7 @@ public class Movement : MonoBehaviour {
         rBody = GetComponent<Rigidbody2D>();
         bColl = GetComponent<BoxCollider2D>();
         excludePlayerMask =  ~ (1 << LayerMask.NameToLayer("Player"));
-        movementInput = GetComponent<IMovementInput>();
+        movementInput = GetComponent<IControlInput>();
         collRadius = (transform.localScale.x * 10) / 2 + 0.02f;
 	}
 

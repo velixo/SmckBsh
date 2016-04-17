@@ -1,13 +1,20 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class AIMovementInput : MonoBehaviour, IMovementInput {
+public class AiControlInput : MonoBehaviour, IControlInput {
     private Movement movement;
     private float _xDir = 0;
-    private float _yDir = 0;
     public float xDir {
         get {
-            return CalculateXDir();
+            if (movement.TouchingSurface()) {
+                Vector2 touchedSide = movement.GetTouchedSide();
+                if (_xDir == 1 && touchedSide == Vector2.right) {
+                    _xDir = -1;
+                } else if (_xDir == -1 && touchedSide == Vector2.left) {
+                    _xDir = 1;
+                }
+            }
+            return _xDir;
         }
     }
     public float yDir {
@@ -30,15 +37,7 @@ public class AIMovementInput : MonoBehaviour, IMovementInput {
         }
     }
 
-    private float CalculateXDir() {
-        if (movement.TouchingSurface()) {
-            Vector2 touchedSide = movement.GetTouchedSide();
-            if (_xDir == 1 && touchedSide == Vector2.right) {
-                _xDir = -1;
-            } else if (_xDir == -1 && touchedSide == Vector2.left) {
-                _xDir = 1;
-            }
-        }
-        return _xDir;
+    public Vector2 GetAttackDir() {
+        return Vector2.zero;
     }
 }
