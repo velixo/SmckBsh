@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Movement : MonoBehaviour {
+public class Movement : NetworkBehaviour {
     public bool debug;
     public float xMaxVel;
     public float jumpVel;
@@ -27,6 +28,7 @@ public class Movement : MonoBehaviour {
 
 	// Update is called once per frame
 	private void FixedUpdate () {
+        if (!isLocalPlayer) return;
         GetMovementInput();
         Move();
 	}

@@ -9,6 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 426634}
   - 212: {fileID: 21246164}
+  - 114: {fileID: 11459088}
+  - 114: {fileID: 11462028}
   m_Layer: 0
   m_Name: HitSprite
   m_TagString: Untagged
@@ -28,6 +30,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &11459088
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 248
+    i1: 224
+    i2: 199
+    i3: 210
+    i4: 206
+    i5: 46
+    i6: 240
+    i7: 228
+    i8: 122
+    i9: 152
+    i10: 250
+    i11: 73
+    i12: 9
+    i13: 51
+    i14: 148
+    i15: 98
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 0
+--- !u!114 &11462028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 1
+  m_SendInterval: 0.11111111
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!212 &21246164
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -14,9 +14,11 @@ GameObject:
   - 114: {fileID: 11409964}
   - 114: {fileID: 11487354}
   - 114: {fileID: 11450452}
+  - 114: {fileID: 11440598}
+  - 114: {fileID: 11403832}
   m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +30,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 157684}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.0202, y: 3.370225, z: 0}
+  m_LocalPosition: {x: -4, y: 7, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -64,6 +66,26 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Size: {x: 10, y: 10}
+--- !u!114 &11403832
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1768714887, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_TransformSyncMode: 2
+  m_SendInterval: 0.1
+  m_SyncRotationAxis: 3
+  m_RotationSyncCompression: 0
+  m_SyncSpin: 0
+  m_MovementTheshold: 0.001
+  m_SnapThreshold: 5
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 1
 --- !u!114 &11409964
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -81,6 +103,38 @@ MonoBehaviour:
   xAirDrag: 0.95
   xGroundDrag: 0.84
   wallJumpVel: 25
+--- !u!114 &11440598
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157684}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 372142912, guid: 870353891bb340e2b2a9c8707e7419ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SceneId:
+    m_Value: 0
+  m_AssetId:
+    i0: 180
+    i1: 177
+    i2: 225
+    i3: 45
+    i4: 205
+    i5: 66
+    i6: 220
+    i7: 180
+    i8: 139
+    i9: 88
+    i10: 144
+    i11: 252
+    i12: 143
+    i13: 214
+    i14: 180
+    i15: 52
+  m_ServerOnly: 0
+  m_LocalPlayerAuthority: 1
 --- !u!114 &11450452
 MonoBehaviour:
   m_ObjectHideFlags: 1

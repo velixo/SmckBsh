@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using UnityEditor;
+using UnityEngine.Networking;
 using System.Collections;
 
-public class Attacking : MonoBehaviour {
+public class Attacking : NetworkBehaviour {
     private bool debug = true;
     public float minTimeBetweenHits;
     private float lastArrHit = -Mathf.Infinity;
@@ -13,15 +13,19 @@ public class Attacking : MonoBehaviour {
     private IControlInput attackInput;
 
     private void Awake () {
-        GameObject hitSprite = AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Prefabs/HitSprite.prefab");
+        GameObject hitSprite = Instantiate(Resources.Load("Prefabs/HitSprite")) as GameObject;
         hitSpriteOffset = (transform.localScale.x * 10 + hitSprite.transform.localScale.x) / 2;
+        Destroy(hitSprite);
+        hitSprite = null;
         playerLayer = LayerMask.NameToLayer("Player");
         attackInput = GetComponent<IControlInput>();
     }
 
 	private void Update () {
+        if (!isLocalPlayer) return;
+
         float timeSinceHit = Time.timeSinceLevelLoad - lastArrHit;
-        CalcHitSpriteAlpha();
+        CmdCalcHitSpriteAlpha();
         if (timeSinceHit > minTimeBetweenHits) {
             attackDir = attackInput.GetAttackDir();
             if (attackDir != Vector2.zero) {
@@ -30,13 +34,15 @@ public class Attacking : MonoBehaviour {
                     Destroy(attackSprite);
                     attackSprite = null;
                 }
-                SpawnHitSprite();
-                DestroyEnemiesInAttackArea();
+                CmdSpawnHitSprite();
+                CmdDestroyEnemiesInAttackArea();
             }
         }
 	}
 
-    private void CalcHitSpriteAlpha() {
+    [Command]
+    void CmdCalcHitSpriteAlpha() {
+        print("CmdCalcHitSpriteAlpha()");
         if (attackSprite != null) {
             Color col = attackSprite.GetComponent<SpriteRenderer>().color;
             col.a = 1 - Mathf.Clamp01((Time.timeSinceLevelLoad - lastArrHit) / minTimeBetweenHits);
@@ -44,13 +50,19 @@ public class Attacking : MonoBehaviour {
         }
     }
 
-    private void SpawnHitSprite() {
-        attackSprite = Instantiate(Resources.Load("Prefabs/HitSprite")) as GameObject;
-        attackSprite.transform.position = transform.position;
-        attackSprite.transform.Translate(attackDir * hitSpriteOffset);
+    [Command]
+    void CmdSpawnHitSprite() {
+        print("CmdSpawnHitSprite()");
+        Vector2 attackSpritePos = (Vector2) transform.position + attackDir * hitSpriteOffset;
+        attackSprite = Instantiate(Resources.Load("Prefabs/HitSprite"), attackSpritePos, Quaternion.identity) as GameObject;
+        NetworkServer.Spawn(attackSprite);
+        //attackSprite.transform.position = transform.position;
+        //attackSprite.transform.Translate(attackDir * hitSpriteOffset);
     }
 
-    private void DestroyEnemiesInAttackArea() {
+    [Command]
+    void CmdDestroyEnemiesInAttackArea() {
+        print("CmdDestroyEnemiesInAttackArea()");
         Vector2 aPos = attackSprite.transform.position;
         Vector2 aScale = attackSprite.transform.localScale;
         Vector2 aMin = new Vector2(aPos.x - aScale.x / 2, aPos.y - aScale.y / 2);

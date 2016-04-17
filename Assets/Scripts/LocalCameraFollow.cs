@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollow : MonoBehaviour {
+public class LocalCameraFollow : MonoBehaviour {
     public GameObject player;
     public GameObject ground;
     public GameObject lWall;
